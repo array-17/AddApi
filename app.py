@@ -197,14 +197,34 @@ def get_templates():
     templates = []
     for template_class in TemplateClasses:
         template_instance = template_class()
+        template_name = None
+        template_description = None
+
+        if hasattr(template_instance, 'name'):
+            template_name = template_instance.name
+        if hasattr(template_instance, 'description'):
+            template_description = template_instance.description
+
+        if hasattr(template_instance, 'template'):
+            if not template_name and hasattr(template_instance.template, 'name'):
+                template_name = template_instance.template.name
+            if not template_description and hasattr(template_instance.template, 'description'):
+                template_description = template_instance.template.description
+
         if hasattr(template_instance, 'toFrontend_parameters') and callable(getattr(template_instance, 'toFrontend_parameters')):
-            templates.append(template_instance.toFrontend_parameters())
+            parameters = template_instance.toFrontend_parameters()
         elif hasattr(template_instance, 'to_frontend_parameters') and callable(getattr(template_instance, 'to_frontend_parameters')):
-            templates.append(template_instance.to_frontend_parameters())
+            parameters = template_instance.to_frontend_parameters()
         elif hasattr(template_instance, 'template') and hasattr(template_instance.template, 'to_frontend_parameters') and callable(getattr(template_instance.template, 'to_frontend_parameters')):
-            templates.append(template_instance.template.to_frontend_parameters())
+            parameters = template_instance.template.to_frontend_parameters()
         else:
             raise Exception(f"Template class {template_class.__name__} does not expose a frontend serialization method")
+
+        templates.append({
+            "name": template_name or template_class.__name__,
+            "description": template_description or "",
+            "parameters": parameters,
+        })
     return jsonify({"templates": templates})
 
 @app.route('/Jobs/<string:jobUUID>/download', methods=['GET'])
