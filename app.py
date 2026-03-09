@@ -10,6 +10,7 @@ from fork_config import (
     TEMPLATE_CLASSES,
     DOWNLOADABLE_CLASS,
     validate_fork_config,
+    template_tags
 )
 
 app = Flask(__name__)
@@ -189,6 +190,12 @@ def case_result(batchUUID, caseNumber, resultType):
         return processed_results
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/Template/Tags' , methods=['GET'])
+def get_template_tags():
+    #Returns a list of strings that are associated with this API.  Used to help recomend APi's to users.
+    tags = template_tags  # Replace with actual tags
+    return jsonify(tags)
 
 
 @app.route('/Templates', methods=['GET'])

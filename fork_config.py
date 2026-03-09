@@ -9,6 +9,7 @@ Put all fork-specific metadata and class selections in this file.
 svc_name_ = "AddAppService"
 svc_display_name_ = "AddApp Flask App Service"
 svc_description_ = "Runs the AddApp Flask app as a Windows service."
+template_tags = ["math", "addition", "example"]  # Example tags for this API
 
 from Add import AddAction, AddResults, AddTemplate, GraphResults, AddDownloadable
 
