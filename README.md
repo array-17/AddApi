@@ -27,13 +27,14 @@ python app.py
 **Install & run as Windows service**
 - This project includes `flask_service.py` which wraps the Flask app as a Windows service using pywin32. To install the service you must run the following with Administrator privileges:
 ```
-.\.venv\Scripts\python.exe flask_service.py install
-.\.venv\Scripts\python.exe flask_service.py start
+python flask_service.py install
+python flask_service.py start
 ```
+- On first service start, `flask_service.py` now bootstraps a local `.venv` (if missing) and installs `requirements.txt` automatically. It also re-installs requirements when `requirements.txt` changes.
 - To stop and remove the service:
 ```
-.\.venv\Scripts\python.exe flask_service.py stop
-.\.venv\Scripts\python.exe flask_service.py remove
+python flask_service.py stop
+python flask_service.py remove
 ```
 - Notes:
   - Ensure `pywin32` is installed in the environment (not included by default in all setups). If missing, install with `pip install pywin32`.
