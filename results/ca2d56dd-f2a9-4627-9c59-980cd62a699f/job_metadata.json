@@ -1,0 +1,35 @@
+{
+  "projectID": {
+    "value": "SS7"
+  },
+  "revID": {
+    "value": "Revision 1"
+  },
+  "batchUUID": "ca2d56dd-f2a9-4627-9c59-980cd62a699f",
+  "dateCreated": "2026-03-09T10:03:36.163312Z",
+  "apiVersion": "1.0",
+  "cases": [
+    {
+      "caseNumber": 0,
+      "caseStatus": "Completed",
+      "case_data": {
+        "a": {
+          "value": 41546156,
+          "units": ""
+        },
+        "b": {
+          "value": 200335,
+          "units": ""
+        },
+        "c": {
+          "value": 0,
+          "units": ""
+        },
+        "dateRun": {
+          "value": "2026-03-09T10:03:37.265779Z",
+          "units": ""
+        }
+      }
+    }
+  ]
+}
