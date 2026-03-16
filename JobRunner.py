@@ -3,20 +3,26 @@ class JobRunner:
     def __init__(self,ActionClass, ResultsClasses):
         self.ActionClass = ActionClass
         self.ResultsClasses = ResultsClasses
+        self._idle_log_counter = 0
 
     
     def run_loop(self):
         import time
         while True:
-            print("JobRunner: Checking for queued cases...")
             cases = self.get_cases()
             if len(cases) == 0:
+                # Avoid log spam while idle; emit a heartbeat occasionally.
+                self._idle_log_counter += 1
+                if self._idle_log_counter % 60 == 0:
+                    print("JobRunner: Idle (no queued cases)")
                 time.sleep(5)
                 continue
-            for case in cases:
-                # Only run cases that are Queued, not already Running/Completed/Failed
-                if case.get_status() == "Queued":
-                    case.runCase()
+            self._idle_log_counter = 0
+            queued_cases = [case for case in cases if case.get_status() == "Queued"]
+            if len(queued_cases) > 0:
+                print(f"JobRunner: Processing {len(queued_cases)} queued case(s)")
+            for case in queued_cases:
+                case.runCase()
             # Small delay to avoid tight loop
             time.sleep(1)
 
