@@ -1,0 +1,45 @@
+{
+  "projectID": "1",
+  "revID": "1",
+  "batchUUID": "7c3ad283-01d5-4988-9c33-03f6366d85c4",
+  "dateCreated": "2026-04-13T16:08:38.477887Z",
+  "apiVersion": "1.0",
+  "cases": [
+    {
+      "caseNumber": 0,
+      "caseStatus": "Not Started",
+      "case_data": {
+        "a": 1,
+        "b": 3,
+        "c": null
+      }
+    },
+    {
+      "caseNumber": 1,
+      "caseStatus": "Not Started",
+      "case_data": {
+        "a": 1,
+        "b": 4,
+        "c": null
+      }
+    },
+    {
+      "caseNumber": 2,
+      "caseStatus": "Not Started",
+      "case_data": {
+        "a": 2,
+        "b": 3,
+        "c": null
+      }
+    },
+    {
+      "caseNumber": 3,
+      "caseStatus": "Not Started",
+      "case_data": {
+        "a": 2,
+        "b": 4,
+        "c": null
+      }
+    }
+  ]
+}
